@@ -1,0 +1,5 @@
+{
+  "name": "partykit-poll-party",
+  "main": "party/index.ts",
+  "compatibilityDate": "2023-11-25"
+}
