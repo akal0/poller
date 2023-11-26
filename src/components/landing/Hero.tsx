@@ -22,7 +22,7 @@ const Hero = () => {
 				<p className="text-center w-3/4 md:w-3/5 text-sm md:text-md text-slate-400">
 					We know how frustrating it is to need a poll that provides
 					realtime votes, no matter the situation. With poller, you
-					won't have to worry about this issue again!
+					won&apos;t have to worry about this issue again!
 				</p>
 			</div>
 

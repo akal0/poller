@@ -14,8 +14,6 @@ const PollChoices = ({ options, votes, vote, setVote }: PollChoicesProps) => {
 	const mostVotes = Math.max(...votes)
 	const leastVotes = Math.min(...votes)
 
-	console.log(votes)
-
 	return (
 		<ul className="flex h-full flex-col space-y-4">
 			{options.map((option, i) => (
