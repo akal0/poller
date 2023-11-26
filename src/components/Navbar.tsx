@@ -12,7 +12,7 @@ const Navbar = () => {
 
 				<div>
 					<Link
-						href="#"
+						href="https://github.com/akal0/poller"
 						className="opacity-60 hover:opacity-100 transition-opacity duration-400 flex items-center text-xs border px-4 md:px-6 py-1.5 rounded-full"
 					>
 						Star on Github
