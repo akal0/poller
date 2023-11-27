@@ -11,16 +11,20 @@ const PollPage = async ({ params }: { params: { poll_id: string } }) => {
 	const getPoll = async () => {
 		"use server"
 
-		const req = await fetch(`${PARTYKIT_URL}/party/${pollId}`, {
-			method: "GET",
-			next: {
-				revalidate: 0,
-			},
-		})
+		try {
+			const req = await fetch(`${PARTYKIT_URL}/party/${pollId}`, {
+				method: "GET",
+				next: {
+					revalidate: 0,
+				},
+			})
 
-		const poll = (await req.json()) as Poll
+			const poll = (await req.json()) as Poll
 
-		return poll
+			return poll
+		} catch (err) {
+			console.log(err)
+		}
 	}
 
 	const poll = await getPoll()
