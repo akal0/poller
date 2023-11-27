@@ -6,17 +6,9 @@ import usePartySocket from "partysocket/react"
 import { useEffect, useState } from "react"
 import PollChoices from "./PollChoices"
 
-const Votes = ({
-	id,
-	options,
-	initialVotes,
-}: {
-	id: string
-	options: string[]
-	initialVotes?: number[]
-}) => {
+const Votes = ({ poll, id }: { poll: Poll; id: string }) => {
 	// Overall votes for the poll
-	const [votes, setVotes] = useState<number[]>(initialVotes ?? [])
+	const [votes, setVotes] = useState<number[]>(poll.votes ?? [])
 
 	// User's individual vote
 	const [vote, setVote] = useState<number | null>(null)
@@ -58,14 +50,7 @@ const Votes = ({
 		}
 	}, [id, vote])
 
-	return (
-		<PollChoices
-			options={options}
-			votes={votes}
-			vote={vote}
-			setVote={sendVote}
-		/>
-	)
+	return <PollChoices vote={vote} poll={poll} setVote={sendVote} />
 }
 
 export default Votes
