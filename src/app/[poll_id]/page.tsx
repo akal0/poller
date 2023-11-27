@@ -1,26 +1,29 @@
-import { notFound } from "next/navigation"
 import { PARTYKIT_URL } from "../env"
 import type { Poll } from "@/types/Poll"
 import Votes from "@/components/poll/Votes"
+import { useState } from "react"
 
 const PollPage = async ({ params }: { params: { poll_id: string } }) => {
 	const pollId = params.poll_id
 
 	// Send a GET request to PartyKit room
 
-	let poll
+	const getPoll = async () => {
+		"use server"
 
-	try {
 		const req = await fetch(`${PARTYKIT_URL}/party/${pollId}`, {
 			method: "GET",
 			next: {
 				revalidate: 0,
 			},
 		})
-		poll = (await req.json()) as Poll
-	} catch (err) {
-		console.log(err)
+
+		const poll = (await req.json()) as Poll
+
+		return poll
 	}
+
+	const poll = await getPoll()
 
 	// Feed the data into poll var
 

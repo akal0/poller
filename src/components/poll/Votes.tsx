@@ -12,7 +12,7 @@ const Votes = ({
 	initialVotes,
 }: {
 	id: string
-	options: string[] | undefined
+	options: string[]
 	initialVotes?: number[]
 }) => {
 	// Overall votes for the poll

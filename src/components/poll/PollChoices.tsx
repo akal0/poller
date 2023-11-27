@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils"
 
 interface PollChoicesProps {
-	options: string[] | undefined
+	options: string[]
 	votes: number[]
 	vote: number | null
 	setVote: (option: number) => void
