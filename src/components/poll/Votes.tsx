@@ -8,15 +8,24 @@ import PollChoices from "./PollChoices"
 
 const Votes = ({
 	id,
-	options,
-	initialVotes,
+	getPoll,
 }: {
 	id: string
-	options: string[]
-	initialVotes?: number[]
+	getPoll: () => Promise<Poll | undefined>
 }) => {
+	const [poll, setPoll] = useState<Poll | undefined>()
+
+	useEffect(() => {
+		const useEffectPoll = async () => {
+			const data = await getPoll()
+			setPoll(data)
+		}
+
+		useEffectPoll()
+	}, [poll])
+
 	// Overall votes for the poll
-	const [votes, setVotes] = useState<number[]>(initialVotes ?? [])
+	const [votes, setVotes] = useState<number[]>(poll?.votes ?? [])
 
 	// User's individual vote
 	const [vote, setVote] = useState<number | null>(null)
@@ -60,7 +69,7 @@ const Votes = ({
 
 	return (
 		<PollChoices
-			options={options}
+			options={poll?.options}
 			votes={votes}
 			vote={vote}
 			setVote={sendVote}
