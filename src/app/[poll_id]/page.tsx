@@ -9,8 +9,6 @@ const PollPage = async ({ params }: { params: { poll_id: string } }) => {
 	// Send a GET request to PartyKit room
 
 	const getPoll = async () => {
-		"use server"
-
 		try {
 			const req = await fetch(`${PARTYKIT_URL}/party/${pollId}`, {
 				method: "GET",
