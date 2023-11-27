@@ -4,6 +4,7 @@ import "./globals.css"
 import { cn } from "@/lib/utils"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/landing/Footer"
+import Providers from "./providers/Provider"
 
 const poppins = Poppins({
 	subsets: [],
@@ -25,8 +26,10 @@ export default function RootLayout({
 			<body className={cn("bg-[#000212] text-white", poppins.className)}>
 				<Navbar />
 				<main className="flex flex-col md:gap-20">
-					{children}
-					<Footer />
+					<Providers>
+						{children}
+						<Footer />
+					</Providers>
 				</main>
 			</body>
 		</html>
