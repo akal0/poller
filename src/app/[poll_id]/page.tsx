@@ -37,11 +37,13 @@ const PollPage = async ({ params }: { params: { poll_id: string } }) => {
 				{poll?.title}
 			</h1>
 
-			<Votes
-				id={pollId}
-				options={poll?.options}
-				initialVotes={poll?.votes}
-			/>
+			{poll && (
+				<Votes
+					id={pollId}
+					options={poll.options}
+					initialVotes={poll?.votes}
+				/>
+			)}
 		</div>
 	)
 }
