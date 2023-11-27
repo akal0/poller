@@ -8,35 +8,32 @@ const PollPage = async ({ params }: { params: { poll_id: string } }) => {
 
 	// Send a GET request to PartyKit room
 
-	const req = await fetch(`${PARTYKIT_URL}/party/${pollId}`, {
-		method: "GET",
-		next: {
-			revalidate: 0,
-		},
-	})
+	let poll
 
-	if (!req.ok) {
-		if (req.status === 404) {
-			notFound()
-		} else {
-			console.log("Something went wrong!")
-		}
+	try {
+		const req = await fetch(`${PARTYKIT_URL}/party/${pollId}`, {
+			method: "GET",
+			next: {
+				revalidate: 0,
+			},
+		})
+		poll = (await req.json()) as Poll
+	} catch (err) {
+		console.log(err)
 	}
 
 	// Feed the data into poll var
 
-	const poll = (await req.json()) as Poll
-
 	return (
 		<div className="flex flex-col justify-center space-y-6 min-w-[50%] mx-auto min-h-[calc(100vh-16rem)] md:min-h-[calc(100vh-8rem)] px-8">
 			<h1 className="text-xl md:text-3xl font-semibold text-center">
-				{poll.title}
+				{poll?.title}
 			</h1>
 
 			<Votes
 				id={pollId}
-				options={poll.options}
-				initialVotes={poll.votes}
+				options={poll?.options}
+				initialVotes={poll?.votes}
 			/>
 		</div>
 	)

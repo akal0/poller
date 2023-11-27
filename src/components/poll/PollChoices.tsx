@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils"
 
 interface PollChoicesProps {
-	options: string[]
+	options: string[] | undefined
 	votes: number[]
 	vote: number | null
 	setVote: (option: number) => void
@@ -16,7 +16,7 @@ const PollChoices = ({ options, votes, vote, setVote }: PollChoicesProps) => {
 
 	return (
 		<ul className="flex h-full flex-col space-y-4">
-			{options.map((option, i) => (
+			{options?.map((option, i) => (
 				<li key={i}>
 					<div className="relative w-full min-h-[40px] border rounded-md border-slate-800 flex">
 						<div

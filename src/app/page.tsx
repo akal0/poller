@@ -1,10 +1,8 @@
-import Navbar from "@/components/Navbar"
 import Hero from "@/components/landing/Hero"
 import PollCreator, { TPollSchema } from "@/components/poll/PollCreator"
 import { redirect } from "next/navigation"
 import { PARTYKIT_URL } from "./env"
 import { Poll } from "@/types/Poll"
-import Footer from "@/components/landing/Footer"
 
 const randomId = () => Math.random().toString(36).substring(2, 10)
 
