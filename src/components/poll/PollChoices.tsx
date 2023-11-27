@@ -10,8 +10,11 @@ interface PollChoicesProps {
 }
 
 const PollChoices = ({ poll, vote, setVote }: PollChoicesProps) => {
+	// @ts-ignore
 	const totalVotes = poll.votes.reduce((a, b) => a + b, 0)
+	// @ts-ignore
 	const mostVotes = Math.max(...poll.votes)
+	// @ts-ignore
 	const leastVotes = Math.min(...poll.votes)
 	return (
 		<ul className="flex h-full flex-col space-y-4">
