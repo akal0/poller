@@ -16,12 +16,12 @@ const Votes = ({
 	const [poll, setPoll] = useState<Poll | undefined>()
 
 	useEffect(() => {
-		const useEffectPoll = async () => {
+		const fetchPoll = async () => {
 			const data = await getPoll()
 			setPoll(data)
 		}
 
-		useEffectPoll()
+		fetchPoll()
 	}, [getPoll])
 
 	// Overall votes for the poll
