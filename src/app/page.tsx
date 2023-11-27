@@ -23,13 +23,17 @@ export default function Home() {
 
 		// Send POST request to PartyKit room
 
-		await fetch(`${PARTYKIT_URL}/party/${id}`, {
-			method: "POST",
-			body: JSON.stringify(poll),
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
+		try {
+			await fetch(`${PARTYKIT_URL}/party/${id}`, {
+				method: "POST",
+				body: JSON.stringify(poll),
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
+		} catch (err) {
+			console.log(err)
+		}
 
 		redirect(`${id}`)
 	}
