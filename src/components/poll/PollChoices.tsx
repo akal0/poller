@@ -1,46 +1,40 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { Poll } from "@/types/Poll"
 
 interface PollChoicesProps {
-	poll: Poll
+	options: string[]
+	votes: number[]
 	vote: number | null
 	setVote: (option: number) => void
 }
 
-const PollChoices = ({ poll, vote, setVote }: PollChoicesProps) => {
-	// @ts-ignore
-	const totalVotes = poll.votes.reduce((a, b) => a + b, 0)
-	// @ts-ignore
-	const mostVotes = Math.max(...poll.votes)
-	// @ts-ignore
-	const leastVotes = Math.min(...poll.votes)
+const PollChoices = ({ options, votes, vote, setVote }: PollChoicesProps) => {
+	const totalVotes = votes.reduce((a, b) => a + b, 0)
+	const mostVotes = Math.max(...votes)
+	const leastVotes = Math.min(...votes)
+
 	return (
 		<ul className="flex h-full flex-col space-y-4">
-			{poll.options?.map((option, i) => (
+			{options.map((option, i) => (
 				<li key={i}>
 					<div className="relative w-full min-h-[40px] border rounded-md border-slate-800 flex">
 						<div
 							className={cn(
 								"absolute top-0 left-0 bottom-0 w-full rounded-md transition-all duration-500 z-10",
-								// @ts-ignore
-								poll.votes[i] === mostVotes
+								votes[i] === mostVotes
 									? "bg-green-600"
 									: vote === i
 									? "bg-purple-600"
 									: "bg-blue-600",
-								// @ts-ignore
-								poll.votes[i] === leastVotes && "bg-red-600"
+								votes[i] === leastVotes && "bg-red-600"
 							)}
 							style={{
 								width:
 									vote === null
 										? 0
 										: `${
-												// @ts-ignore
-												((poll?.votes[i] ?? 0) /
-													totalVotes) *
+												((votes[i] ?? 0) / totalVotes) *
 												100
 										  }%`,
 							}}
@@ -56,8 +50,7 @@ const PollChoices = ({ poll, vote, setVote }: PollChoicesProps) => {
 										: "cursor-default",
 									vote === null
 										? ""
-										: // @ts-ignore
-										poll.votes[i] === mostVotes
+										: votes[i] === mostVotes
 										? "font-extrabold"
 										: "font-semibold"
 								)}
@@ -73,13 +66,11 @@ const PollChoices = ({ poll, vote, setVote }: PollChoicesProps) => {
 							</button>
 							{vote === null ? null : vote === i ? (
 								<span className="text-white font-bold">
-									{/* @ts-ignore */}
-									{poll.votes[i] ?? 0}
+									{votes[i] ?? 0}
 								</span>
 							) : (
 								<span className="text-white">
-									{/* @ts-ignore */}
-									{poll.votes[i] ?? 0}
+									{votes[i] ?? 0}
 								</span>
 							)}
 						</div>
