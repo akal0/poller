@@ -22,7 +22,7 @@ const Votes = ({
 		}
 
 		useEffectPoll()
-	}, [poll])
+	}, [getPoll])
 
 	// Overall votes for the poll
 	const [votes, setVotes] = useState<number[]>(poll?.votes ?? [])
