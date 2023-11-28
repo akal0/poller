@@ -2,7 +2,7 @@ import { PARTYKIT_URL } from "@/app/env"
 import { NextResponse } from "next/server"
 
 export async function GET(
-	req: NextResponse,
+	req: Request,
 	{ params }: { params: { poll_id: string } }
 ) {
 	let { poll_id: pollId } = params
@@ -17,8 +17,8 @@ export async function GET(
 
 		const data = await res.json()
 
-		return NextResponse.json(data, { status: 200 })
+		return Response.json(data, { status: 200 })
 	} catch (err) {
-		return new NextResponse("500")
+		return new Response("500")
 	}
 }
