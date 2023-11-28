@@ -30,6 +30,8 @@ const PollPage = ({ params }: { params: { poll_id: string } }) => {
 		queryFn: getPolls,
 	})
 
+	console.log(poll)
+
 	return (
 		<div className="flex flex-col items-center justify-center space-y-6 min-w-[50%] mx-auto min-h-[calc(100vh-16rem)] md:min-h-[calc(100vh-8rem)] px-8">
 			{poll && (
