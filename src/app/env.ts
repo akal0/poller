@@ -1,5 +1,6 @@
 export const PARTYKIT_HOST =
-	process.env.NEXT_PUBLIC_PARTYKIT_HOST ?? "127.0.0.1:1999"
+	process.env.NEXT_PUBLIC_PARTYKIT_HOST ??
+	"https://poller.akal0.partykit.dev/"
 
 export const PROTOCOL = PARTYKIT_HOST.startsWith("127.0.0.1") ? "http" : "https"
 
