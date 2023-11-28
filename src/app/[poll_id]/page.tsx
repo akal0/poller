@@ -23,7 +23,7 @@ const PollPage = ({ params }: { params: { poll_id: string } }) => {
 	// const poll = (await req.json()) as Poll
 
 	const getPolls = async () => {
-		const response = await axios.get(`${PARTYKIT_URL}/party/${pollId}`)
+		const response = await axios.get(`/api/${pollId}`)
 
 		return response.data
 	}
