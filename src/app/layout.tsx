@@ -23,15 +23,17 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={cn("bg-[#000212] text-white", poppins.className)}>
-				<Navbar />
-				<main className="flex flex-col md:gap-20">
-					<Providers>
+			<Providers>
+				<body
+					className={cn("bg-[#000212] text-white", poppins.className)}
+				>
+					<Navbar />
+					<main className="flex flex-col md:gap-20">
 						{children}
 						<Footer />
-					</Providers>
-				</main>
-			</body>
+					</main>
+				</body>
+			</Providers>
 		</html>
 	)
 }

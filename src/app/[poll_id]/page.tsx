@@ -14,9 +14,13 @@ const PollPage = ({ params }: { params: { poll_id: string } }) => {
 	const pollId = params.poll_id
 
 	const getPolls = async () => {
-		const response = await axios.get(`/api/${pollId}`)
+		try {
+			const response = await axios.get(`/api/${pollId}`)
 
-		return response.data
+			return response.data
+		} catch (err) {
+			console.log(err)
+		}
 	}
 
 	// Feed the data into poll var
