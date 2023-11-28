@@ -13,15 +13,6 @@ export const revalidate = 0
 const PollPage = ({ params }: { params: { poll_id: string } }) => {
 	const pollId = params.poll_id
 
-	// const req = await fetch(`${PARTYKIT_URL}/party/${pollId}`, {
-	// 	method: "GET",
-	// 	next: {
-	// 		revalidate: 0,
-	// 	},
-	// })
-
-	// const poll = (await req.json()) as Poll
-
 	const getPolls = async () => {
 		const response = await axios.get(`/api/${pollId}`)
 
@@ -37,9 +28,11 @@ const PollPage = ({ params }: { params: { poll_id: string } }) => {
 
 	return (
 		<div className="flex flex-col items-center justify-center space-y-6 min-w-[50%] mx-auto min-h-[calc(100vh-16rem)] md:min-h-[calc(100vh-8rem)] px-8">
-			<h1 className="text-xl md:text-3xl font-semibold text-center">
-				{poll?.title}
-			</h1>
+			{poll && (
+				<h1 className="text-xl md:text-3xl font-semibold text-center">
+					{poll.title}
+				</h1>
+			)}
 
 			{isLoading && (
 				<Loader2 className="w-12 h-12 animate-spin flex items-center justify-center" />
